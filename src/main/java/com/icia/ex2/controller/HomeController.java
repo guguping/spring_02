@@ -86,7 +86,7 @@ public class HomeController {
 //        model.addAttribute("sList",sList);
 
         List<StudentDTO> sList = new ArrayList<>();
-        for (int i = 1 ; i<=2 ; i++){
+        for (int i = 1 ; i<=10 ; i++){
 //            StudentDTO studentDTO = newStudent(i);
 //            sList.add(studentDTO);
             sList.add(newStudent(i));

@@ -1,11 +1,16 @@
 package com.icia.ex2.controller;
 
+import com.icia.ex2.dto.StudentDTO;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -43,4 +48,58 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/hello3")
+    public String hello3(Model model){
+        /* Model = 스프링에서 제공하는 인터페이스 */
+        String s1 = "안녕하세요";
+        model.addAttribute("m1",s1);
+        return "hello3";
+    }
+
+    @GetMapping("/hello4")
+    public String hello4(Model model){
+        StudentDTO studentDTO = new StudentDTO();
+        studentDTO.setId(1L);
+        studentDTO.setStudentName("학생1");
+        studentDTO.setStudentNumber("12341234");
+        model.addAttribute("student",studentDTO);
+        return "hello4";
+    }
+
+    /* hello5 요청을 처리하는 메서드
+    *  실행내용: StudentDTO 객체를 담는 ArrayList를 선언하고 학생 2명의 정보를 리스트에 저장 후
+    *  리스트를 모델에 담자 */
+
+    @GetMapping("/hello5")
+    public String Hello5(Model model){
+//        StudentDTO studentDTO = new StudentDTO();
+//        List<StudentDTO> sList = new ArrayList<>();
+//        studentDTO.setId(1L);
+//        studentDTO.setStudentName("학생1");
+//        studentDTO.setStudentNumber("12341234");
+//        sList.add(studentDTO);
+//        studentDTO = new StudentDTO();
+//        studentDTO.setId(2L);
+//        studentDTO.setStudentName("학생2");
+//        studentDTO.setStudentNumber("45674567");
+//        sList.add(studentDTO);
+//        model.addAttribute("sList",sList);
+
+        List<StudentDTO> sList = new ArrayList<>();
+        for (int i = 1 ; i<=2 ; i++){
+//            StudentDTO studentDTO = newStudent(i);
+//            sList.add(studentDTO);
+            sList.add(newStudent(i));
+        }
+        model.addAttribute("sList",sList);
+        return "hello5";
+    }
+
+    private StudentDTO newStudent(int i){
+        StudentDTO studentDTO = new StudentDTO();
+        studentDTO.setId((long)i);
+        studentDTO.setStudentName("학생"+i);
+        studentDTO.setStudentNumber("1111110"+i);
+        return studentDTO;
+    }
 }

@@ -14,6 +14,10 @@
   <h2>Hello World !!</h2>
   <a href="/hello1">Hello1로 이동하기</a>
   <button onclick="fun1()">Hello2로 전송받기</button>
+
+  <a href="/hello3">hello3.jsp 출력</a>
+<a href="/hello4">hello4.jsp 출력</a>
+  <a href="/hello5">hello5.jsp 출력</a>
 </body>
 <script>
     const fun1 = () => {
